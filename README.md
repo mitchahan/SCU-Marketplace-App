@@ -35,24 +35,44 @@ Checking code in on console
 Sometimes you may need to copy the upstream command because it hasn't been created yet, just copy and paste the prompted one in console.
 
 ### Creating a New Branch to Work From Example
-`git pull origin/develop`
-`git checkout -b feature/WhatYouAreBuilding`
+```
+    git pull origin/develop
+    git checkout -b feature/WhatYouAreBuilding
+```
+
 Do some work.
+
 Test and make sure it works.
-`git add .`
-`git commit -m "Quick desc. of what you did"`
+
+```
+    git add .
+    git commit -m "Quick desc. of what you did"
+```
+
 Or
+
 `git commit . -m "Quick desc. of what you did"` (This just combines the two commands above)
+
 Then head over to our Git Repository, create a pull request for your feature branch -> develop.
+
 Have at least one person approve the Pull Request.
+
 Go back to your local code.
-`git checkout develop`
-`git pull origin/develop`
-`git status`
+
+```
+    git checkout develop
+    git pull origin/develop
+    git status
+```
+
 This checks if everything is up to date and in the right commit order.
+
 `git branch`
+
 Make sure you're in develop.
+
 `git branch -D feature/WhatYouAreBuilding`
+
 Repeat.
 
 ## Other Notes
