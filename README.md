@@ -88,5 +88,8 @@ When creating a new file, please copy and paste the following into the start of 
  */
 ```
 
+## Rebasing
+TODO
+
 ## Other Notes
 If you messed up a commit or Pull Request, reach out to Mitch. Mitch has dealt with lots of messed up commits and pull requests.
