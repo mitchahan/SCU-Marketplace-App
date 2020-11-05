@@ -1,3 +1,9 @@
+/* @author Paul Mason
+ * @lastModifiedBy Paul Mason
+ * Description: This file is the test data for an account. Until we've
+ * connected the DB, this will serve as data to populate.
+ */
+
 import React from 'react'
 import PropTypes from 'prop-types'
 
