@@ -1,7 +1,7 @@
 import React from "react";
-//import loginImg from "../../login.svg";
 
-export default class login extends Reacts.Components {
+
+export default class Login extends React.Component {
 
   constructor(props) {
     super(props);
@@ -12,13 +12,10 @@ export default class login extends Reacts.Components {
         <div className="base-container">
           <div className="header">Login</div>
           <div className="content">
-            <div className="image">
-              //<img src={loginImg} />
-            </div>
             <div className="form">
               <div className="form-group">
-                <label htmlFor="username">Username</label>
-                <input type="text" name="username" placeholder="username"/>
+                <label htmlFor="Email">Email</label>
+                <input type="text" name="Email" placeholder="Email"/>
               </div>
               <div className="form-group">
                 <label htmlFor="password">Password</label>
@@ -30,7 +27,7 @@ export default class login extends Reacts.Components {
           <button type="button" className="btn">
             Login
           </button>
-      </div>
+        </div>
       </div>
     );
   }

@@ -1,6 +1,6 @@
 /* @author Paul Mason
  * @lastModifiedBy Mitch Hansen
- * Description: Navigation bar found at the top of website 
+ * Description: Navigation bar found at the top of website
  */
 
 import React from 'react'
@@ -16,6 +16,8 @@ const Navigation = () => {
                     <li><NavLink to="/about">About</NavLink></li>
                     <li><NavLink to="/user">User Profile</NavLink></li>
                     <li><NavLink to="/products">Products</NavLink></li>
+                    <li><NavLink to="/login">Login</NavLink></li>
+                    <li><NavLink to="/register">Register</NavLink></li>
                 </ul>
             </div>
         </div>
