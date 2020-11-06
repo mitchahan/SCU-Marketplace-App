@@ -5,6 +5,8 @@ import Navigation from './components/Navigation/Navigation';
 import HomePage from './components/HomePage';
 import UserDetails from './test-data/UserDetails';
 import ProductDetails from './test-data/ProductDetails';
+import Login from './components/Login Page/Login';
+import Register from './components/Login Page/Register';
 
 function App() {
   return (
@@ -18,13 +20,14 @@ function App() {
               <Route path = "/about" component = {About}/>
               <Route path = "/user" component = {UserDetails}/>
               <Route path = "/products" component = {ProductDetails}/>
+              <Route path = "/login" component = {Login}/>
+              <Route path = "/register" component = {Register}/>
             </Switch>
           </div>
         </HashRouter>
-        
+
       </body>
   );
 }
 
 export default App;
-
