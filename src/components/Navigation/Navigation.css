@@ -1,35 +1,43 @@
 
-@font-face{
-    font-family:classic_text;
-    src: url("clacon.ttf");
+.nav-menu {
+    clear: both;
+    overflow :auto;
+    background-color: darkred;
+    padding-left: 100px;
+    padding-right: 100px;
 }
 
-.menu{
-    height: 1em;
-    width: 100%;
-    padding-bottom: 100px;
+.nav-logo {
+    float: left;
+    display: flex;
+    padding: 10px 0;
 }
 
-.table{
-    display: table;
-    margin: 0 auto;
-}
-.hor_lst{
-    text-align: center;
-    min-width: 0px;
-    list-style: none;
-    font-size: 5em;
-    color: rgb(55, 255, 0);
-}
-.hor_lst li{
-    display: inline;
-    padding:.3em;
+.nav-logo img {
+    display: inline-block;
+    height: 5rem;
+    width: 5rem;
+    padding-right: 10px;
 }
 
-@media only screen and (max-width: 480px) {
-    /* horizontal scrollbar for tables if mobile screen */
-    .tablemobile {
-        overflow-x: auto;
-        display: block;
-    }
+.nav-logo h1 {
+    display: inline-block;
+    color: white;
+}
+
+.nav-items {
+    list-style-type: none;
+    float: right;
+    padding-top: 25px;
+}
+
+ul li{
+    display: inline-block;
+    padding: 0 10px;
+    font-size: 20px;
+}
+
+.link {
+    text-decoration: none;
+    color: white;
 }
