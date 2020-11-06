@@ -1,5 +1,14 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
 
+.nav-container {
+  width: auto;
+}
+
+.body-container {
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
 .App {
   text-align: center;
   display: flex;
@@ -109,7 +118,7 @@
   font-size: 21px;
   padding: 5px 20px;
   border: 0;
-  background-color: #3498db;
+  background-color: darkred;
   color: #fff;
   border-radius: 3px;
   transition: all 250ms ease-in-out;
