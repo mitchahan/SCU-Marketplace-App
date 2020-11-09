@@ -2,7 +2,7 @@ import {HashRouter, Route, Switch} from 'react-router-dom';
 import About from './components/About';
 import Navigation from './components/Navigation/Navigation';
 import HomePage from './components/HomePage';
-import UserDetails from './test-data/UserDetails';
+import User from './components/User';
 import ProductDetails from './test-data/ProductDetails';
 import Login from './components/Login Page/Login';
 import Register from './components/Login Page/Register';
@@ -21,7 +21,7 @@ function App() {
             <Switch>
               <Route path = "/" component = {HomePage} exact/>
               <Route path = "/about" component = {About}/>
-              <Route path = "/user" component = {UserDetails}/>
+              <Route path = "/user" component = {User}/>
               <Route path = "/products" component = {ProductDetails}/>
               <Route path = "/login" component = {Login}/>
               <Route path = "/register" component = {Register}/>

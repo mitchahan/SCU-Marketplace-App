@@ -1,15 +1,14 @@
 /* @author Mitch Hansen
  * @lastModifiedBy Mitch Hansen
- * Description: This file is the express server/backend of the app. It also holds all of the API
- * routes.
+ * Description: This file is the express server/backend of the app.
  */
 
 const express = require('express');
 const mysql = require('mysql');
 
 const app = express();
-const port = 8000;
-const table ='accounts';
+const port = 10061;
+const table ='user';
 
 const pool = mysql.createPool({
   host: process.env.MYSQL_HOST,
@@ -22,8 +21,12 @@ app.listen(port, () => {
   console.log(`App server now listening to port ${port}`);
 });
 
-app.get('/api/accounts', (req, res) => {
-  pool.query(`select * from ${table}`, (err, rows) => {
+/**********************************************************************************************************/
+// Routes
+
+// User Routes
+app.get('/api/user', (req, res) => {
+  pool.query(`SELECT * FROM user;`, (err, rows) => {
     if (err) {
       res.send(err);
     } else {

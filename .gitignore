@@ -7,6 +7,7 @@ node_modules
 .vscode
 .env
 .vs
+src/server/config
 
 # testing
 /coverage
