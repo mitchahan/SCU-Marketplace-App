@@ -8,7 +8,6 @@ import Login from './components/Login Page/Login';
 import Register from './components/Login Page/Register';
 import './App.scss';
 
-
 function App() {
   return (
     <body>
