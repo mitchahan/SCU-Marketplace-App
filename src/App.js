@@ -6,6 +6,7 @@ import UserDetails from './test-data/UserDetails';
 import ProductDetails from './test-data/ProductDetails';
 import Login from './components/Login Page/Login';
 import Register from './components/Login Page/Register';
+import ProductCreation from './components/Product Creation Page/ProductCreation';
 import './App.scss';
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
               <Route path = "/products" component = {ProductDetails}/>
               <Route path = "/login" component = {Login}/>
               <Route path = "/register" component = {Register}/>
+              <Route path = "/create-product" component = {ProductCreation}/>
             </Switch>
           </div>
         </HashRouter>
