@@ -1,3 +1,7 @@
+/* @authors Griffin Langsdorf and Cooper Smith
+ * @lastModifiedBy Griffin Langsdorf
+ * Description: [Create a register page.]
+ */
 import React from "react";
 import './style.scss';
 
