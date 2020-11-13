@@ -1,0 +1,14 @@
+.base-container {
+  width: 100%;
+  height: 100%;
+  .header {
+    font-size: 40px;
+    font-family: "Open Sans", sans-serif;
+    color: currentColor;
+  }
+  .top-right {
+    position: absolute;
+    top: 120px;
+    right:10px;
+  }
+}
