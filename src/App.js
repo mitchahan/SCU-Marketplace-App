@@ -1,7 +1,7 @@
 import {HashRouter, Route, Switch} from 'react-router-dom';
 import About from './components/About';
 import Navigation from './components/Navigation/Navigation';
-import HomePage from './components/HomePage';
+import HomePage from './components/HomePage/HomePage';
 import UserDetails from './test-data/UserDetails';
 import ProductDetails from './test-data/ProductDetails';
 import Login from './components/Login Page/Login';
