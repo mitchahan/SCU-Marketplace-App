@@ -1,6 +1,6 @@
 /* @authors Griffin Langsdorf
  * @lastModifiedBy Griffin Langsdorf
- * Description: [Create a product creation page.]
+ * Description: Create a product creation page.
  */
 
  /*
@@ -20,10 +20,10 @@ export default class ProductCreation extends React.Component {
     
     render() {
         return (
-            <div className="base-container">
+          <div className="base-container">
             <div className="header">Create a Product</div>
-            <div className="content">
-              <div className="form">
+              <div className="content">
+                <div className="form">
                 <div className="form-group">
                   <label htmlFor="Name">Name</label>
                   <input type="text" name="Name" placeholder="Name"/>
@@ -45,7 +45,7 @@ export default class ProductCreation extends React.Component {
             </div>
             <div className="footer">
                 <button type="button" className="btn">Create Product</button>
-        </div>
+          </div>
         </div>
       );
     }
