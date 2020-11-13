@@ -1,6 +1,6 @@
 /* @authors Griffin Langsdorf and Cooper Smith
  * @lastModifiedBy Griffin Langsdorf
- * Description: [Create a login page.]
+ * Description: Create a login page.
  */
 import React from "react";
 import { NavLink } from "react-router-dom";

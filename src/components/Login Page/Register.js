@@ -1,6 +1,6 @@
 /* @authors Griffin Langsdorf and Cooper Smith
  * @lastModifiedBy Griffin Langsdorf
- * Description: [Create a register page.]
+ * Description: Create a register page.
  */
 import React from "react";
 import { NavLink } from "react-router-dom";
