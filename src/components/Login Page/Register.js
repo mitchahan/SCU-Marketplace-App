@@ -4,18 +4,21 @@
  */
 import React from "react";
 import { NavLink } from "react-router-dom";
+import UserSession from "../UserSession";
 import './style.scss';
 
-export default class Register extends React.Component {
+class Register extends React.Component {
 
   constructor(props) {
     super(props);
+
     this.state = {
       email: undefined,
+      password: undefined,
+      isLoggedIn: false,
       first_name: undefined,
       last_name: undefined,
-      password: undefined,
-      confirm_password: undefined
+      confirm_password: undefined,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -40,6 +43,16 @@ export default class Register extends React.Component {
       })
       .then(res => {
         if (res.status === 200) {
+          UserSession.setEmail(this.state.email);
+          UserSession.setPass(this.state.password);
+          UserSession.setIsLoggedIn(true);
+
+          this.setState({
+            email: UserSession.getEmail(),
+            password: UserSession.getPass(),
+            isLoggedIn: UserSession.getIsLoggedIn()
+          });
+
           this.props.history.push('/');
         } else {
           const error = new Error(res.error);
@@ -57,10 +70,7 @@ export default class Register extends React.Component {
 
   handleChange({ target }) {
     this.setState({
-      [target.name]: target.value
-    }, () => {
-      console.log(target);
-      console.log(this.state);
+        [target.name]: target.value
     });
   }
 
@@ -103,3 +113,5 @@ export default class Register extends React.Component {
     );
   }
 }
+
+export default Register;
