@@ -1,4 +1,5 @@
-import {HashRouter, Route, Switch} from 'react-router-dom';
+import React from 'react';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 import About from './components/About';
 import Navigation from './components/Navigation/Navigation';
 import HomePage from './components/HomePage';
@@ -9,11 +10,12 @@ import Register from './components/Login Page/Register';
 import ProductCreation from './components/Product Creation Page/ProductCreation';
 import './App.scss';
 
-function App() {
-  return (
-    <body>
+class App extends React.Component {
+  render() {
+    return (
+      <body>
         {/* Create the Router to be able to change between pages seamlessly*/}
-        <HashRouter basename={"/"}>
+        <HashRouter>
           <div className="nav-container">
             <Navigation />
           </div>
@@ -29,9 +31,9 @@ function App() {
             </Switch>
           </div>
         </HashRouter>
-
       </body>
-  );
+    );
+  };
 }
 
 export default App;

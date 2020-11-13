@@ -4,15 +4,18 @@
  */
 import React from "react";
 import { NavLink } from "react-router-dom";
+import UserSession from "../UserSession";
 import './style.scss';
 
-export default class Login extends React.Component {
+class Login extends React.Component {
 
   constructor(props) {
     super(props);
+
     this.state = {
       email: undefined,
-      password: undefined
+      password: undefined,
+      isLoggedIn: false
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -21,7 +24,7 @@ export default class Login extends React.Component {
 
   handleChange({ target }) {
     this.setState({
-      [target.name]: target.value
+        [target.name]: target.value
     });
   }
 
@@ -40,6 +43,14 @@ export default class Login extends React.Component {
     })
     .then(res => {
       if (res.status === 200) {
+        UserSession.setEmail(this.state.email);
+        UserSession.setPass(this.state.password);
+        UserSession.setIsLoggedIn(true);
+        this.setState({
+          email: UserSession.getEmail(),
+          password: UserSession.getPass(),
+          isLoggedIn: UserSession.getIsLoggedIn()
+        });
         this.props.history.push('/');
       } else {
         const error = new Error(res.error);
@@ -60,7 +71,7 @@ export default class Login extends React.Component {
             <div className="form">
               <div className="form-group">
                 <label htmlFor="Email">Email</label>
-                <input type="text" name="email" placeholder="Enter Email" value={ this.state.email } onChange={ this.handleChange }/>
+                <input type="text" name="email" value={ this.state.email } placeholder="Enter Email" onChange={ this.handleChange }/>
               </div>
               <div className="form-group">
                 <label htmlFor="password">Password</label>
@@ -72,9 +83,11 @@ export default class Login extends React.Component {
           <button type="submit" className="btn" onClick={this.login}>
             Login
           </button>
-          <p>Already have an account? <NavLink className="link" to="/register" exact>Register</NavLink></p>
+          <p>Don't have an account? <NavLink className="link" to="/register" exact>Register</NavLink></p>
         </div>
       </div>
     );
   }
 }
+
+export default Login;
