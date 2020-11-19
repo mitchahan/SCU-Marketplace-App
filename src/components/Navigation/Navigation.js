@@ -4,70 +4,56 @@
  */
 
 import React from 'react';
+import { Navbar } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
-import UserSession from "../UserSession";
-import './Navigation.css';
 import Logo from "../../siteLogo.svg";
+import './Navigation.scss';
 
 class Navigation extends React.Component {
-    constructor(props) {
-        super(props);
-    
-        this.state = {
-          email: UserSession.getEmail(),
-          password: UserSession.getPass(),
-          isLoggedIn: UserSession.getIsLoggedIn()
-        };
-    
+    constructor() {
+        super();
         this.logout = this.logout.bind(this);
     }
 
-    componentDidMount() {
-        this.setState({
-            email: UserSession.getEmail(),
-            password: UserSession.getPass(),
-            isLoggedIn: UserSession.getIsLoggedIn()
-        });
-        console.log('navigation', this.state);
-    }
-
     logout() {
-        UserSession.setEmail(undefined);
-        UserSession.setPass(undefined);
-        UserSession.setIsLoggedIn(false);
-        this.setState({
-            email: UserSession.getEmail(),
-            password: UserSession.getPass(),
-            isLoggedIn: UserSession.getIsLoggedIn()
-        });
-        // this.props.history.push('/');
+        // window.sessionStorage.setItem('email', undefined);
+        // window.sessionStorage.setItem('password', undefined);
+        // window.sessionStorage.setItem('isLoggedIn', false);
     }
 
     render() {
         return (
-            <div className="nav-menu">
-                <div className="nav-logo">
-                    <img src={Logo} alt="SCU" />
-                    <h1>SCU Marketplace</h1>
-                </div>
-                {UserSession.getIsLoggedIn()
-                    ? <ul className = "nav-items">
-                        <li><NavLink className="link" to="/" exact>Home</NavLink></li>
-                        <li><NavLink className="link" to="/about">About</NavLink></li>
-                        <li><NavLink className="link" to="/user">User Profile</NavLink></li>
-                        <li><NavLink className="link" to="/products">Products</NavLink></li>
-                        <li><NavLink className="link" to="/" onClick={this.logout()}>Logout</NavLink></li>
-                      </ul>
-                    : <ul className = "nav-items">
-                        <li><NavLink className="link" to="/" exact>Home</NavLink></li>
-                        <li><NavLink className="link" to="/about">About</NavLink></li>
-                        <li><NavLink className="link" to="/user">User Profile</NavLink></li>
-                        <li><NavLink className="link" to="/products">Products</NavLink></li>
-                        <li><NavLink className="link" to="/login">Login</NavLink></li>
-                        <li><NavLink className="link" to="/register">Register</NavLink></li>
-                      </ul>
+            <Navbar bg="dark" variant="dark" expand="lg" className="pt-3 pb-3">
+                <Navbar.Brand>
+                    <NavLink className="link" to="/">
+                        <img 
+                            src={Logo}
+                            width="30"
+                            height="30"
+                            className="d-inline-block align-top"
+                            alt="SCU" 
+                        />{' '}
+                        SCU Marketplace
+                    </NavLink>
+                </Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
+                    {window.sessionStorage.getItem('isLoggedIn')
+                        ? <>
+                            <NavLink className="link" to="/about">About</NavLink>
+                            <NavLink className="link" to="/products">Products</NavLink>
+                            <NavLink className="link" to="/user">Account</NavLink>
+                            <NavLink className="link" to="/" onClick={this.logout()}>Logout</NavLink>
+                          </>
+                        : <>
+                            <NavLink className="link" to="/about">About</NavLink>
+                            <NavLink className="link" to="/products">Products</NavLink>
+                            <NavLink className="link" to="/login">Login</NavLink>
+                            <NavLink className="link" to="/register">Register</NavLink>
+                          </>
                     }
-            </div>
+                </Navbar.Collapse>
+            </Navbar>
         );
     }
 }

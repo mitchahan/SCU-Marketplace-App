@@ -3,8 +3,8 @@
  * Description: Create a register page.
  */
 import React from "react";
+import { Form } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-import UserSession from "../UserSession";
 import './style.scss';
 
 class Register extends React.Component {
@@ -43,16 +43,9 @@ class Register extends React.Component {
       })
       .then(res => {
         if (res.status === 200) {
-          UserSession.setEmail(this.state.email);
-          UserSession.setPass(this.state.password);
-          UserSession.setIsLoggedIn(true);
-
-          this.setState({
-            email: UserSession.getEmail(),
-            password: UserSession.getPass(),
-            isLoggedIn: UserSession.getIsLoggedIn()
-          });
-
+          window.sessionStorage.setItem('email', this.state.email);
+          window.sessionStorage.setItem('password', this.state.password);
+          window.sessionStorage.setItem('isLoggedIn', true);
           this.props.history.push('/');
         } else {
           const error = new Error(res.error);
@@ -76,31 +69,31 @@ class Register extends React.Component {
 
   render() {
     return (
-      <div className="base-container">
+      <div className="form-base-container">
         <div className="header">Create Your Account</div>
           <div className="content">
-            <div className="form">
-              <div className="form-group">
-                <label htmlFor="First Name">First Name</label>
-                <input type="text" name="first_name" placeholder="Enter First Name" value={ this.state.first_name } onChange={ this.handleChange }/>
-              </div>
-              <div className="form-group">
-                <label htmlFor="Last Name">Last Name</label>
-                <input type="text" name="last_name" placeholder="Enter Last Name" value={ this.state.last_name } onChange={ this.handleChange }/>
-              </div>
-              <div className="form-group">
-                <label htmlFor="Email">Email</label>
-                <input type="text" name="email" placeholder="Enter Email" value={ this.state.email } onChange={ this.handleChange }/>
-              </div>
-              <div className="form-group">
-                <label htmlFor="password">Password</label>
-                <input type="password" name="password" placeholder="Enter Password" value={ this.state.password } onChange={ this.handleChange }/>
-              </div>
-              <div className="form-group">
-                <label htmlFor="ConfirmPass">Confirm Password</label>
-                <input type="password" name="confirm_password" placeholder="Re-enter Password" value={ this.state.confirmPassword } onChange={ this.handleChange }/>
-              </div>
-            </div>
+            <Form>
+              <Form.Group>
+                <Form.Label htmlFor="First Name">First Name</Form.Label>
+                <Form.Control type="text" name="first_name" placeholder="Enter First Name" value={ this.state.first_name } onChange={ this.handleChange }/>
+              </Form.Group>
+              <Form.Group>
+                <Form.Label htmlFor="Last Name">Last Name</Form.Label>
+                <Form.Control type="text" name="last_name" placeholder="Enter Last Name" value={ this.state.last_name } onChange={ this.handleChange }/>
+              </Form.Group>
+              <Form.Group>
+                <Form.Label htmlFor="Email">Email</Form.Label>
+                <Form.Control type="text" name="email" placeholder="Enter Email" value={ this.state.email } onChange={ this.handleChange }/>
+              </Form.Group>
+              <Form.Group>
+                <Form.Label htmlFor="password">Password</Form.Label>
+                <Form.Control type="password" name="password" placeholder="Enter Password" value={ this.state.password } onChange={ this.handleChange }/>
+              </Form.Group>
+              <Form.Group>
+                <Form.Label htmlFor="ConfirmPass">Confirm Password</Form.Label>
+                <Form.Control type="password" name="confirm_password" placeholder="Re-enter Password" value={ this.state.confirmPassword } onChange={ this.handleChange }/>
+              </Form.Group>
+            </Form>
           
           <div className="footer">
             <button type="submit" className="btn" onClick={ this.register }>

@@ -7,8 +7,7 @@ const express = require('express');
 const mysql = require('mysql');
 
 const app = express();
-const port = 10061;
-// const table ='user';
+const port = process.env.MYSQL_PORT;
 
 const pool = mysql.createPool({
   host: process.env.MYSQL_HOST,

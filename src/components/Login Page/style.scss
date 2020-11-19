@@ -1,16 +1,17 @@
-.base-container {
+.form-base-container {
   width: 100%;
+  height: 90vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: lightgray;
-  border-radius: 25px;
-  margin-top: 50px;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
   padding-bottom: 30px;
 
   .header {
-    font-size: 60px;
+    font-size: 50px;
     font-family: "Open Sans", sans-serif;
   }
 

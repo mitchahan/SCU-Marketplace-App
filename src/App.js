@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import About from './components/About';
 import Navigation from './components/Navigation/Navigation';
 import HomePage from './components/HomePage/HomePage';
@@ -15,7 +15,7 @@ class App extends React.Component {
     return (
       <body>
         {/* Create the Router to be able to change between pages seamlessly*/}
-        <HashRouter>
+        <BrowserRouter forceRefresh={true}>
           <div className="nav-container">
             <Navigation />
           </div>
@@ -30,7 +30,7 @@ class App extends React.Component {
               <Route path = "/create-product" component = {ProductCreation}/>
             </Switch>
           </div>
-        </HashRouter>
+        </BrowserRouter>
       </body>
     );
   };

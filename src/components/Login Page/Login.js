@@ -3,8 +3,8 @@
  * Description: Create a login page.
  */
 import React from "react";
+import { Form } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-import UserSession from "../UserSession";
 import './style.scss';
 
 class Login extends React.Component {
@@ -43,14 +43,10 @@ class Login extends React.Component {
     })
     .then(res => {
       if (res.status === 200) {
-        UserSession.setEmail(this.state.email);
-        UserSession.setPass(this.state.password);
-        UserSession.setIsLoggedIn(true);
-        this.setState({
-          email: UserSession.getEmail(),
-          password: UserSession.getPass(),
-          isLoggedIn: UserSession.getIsLoggedIn()
-        });
+        window.sessionStorage.setItem('email', this.state.email);
+        window.sessionStorage.setItem('password', this.state.password);
+        window.sessionStorage.setItem('isLoggedIn', true);
+
         this.props.history.push('/');
       } else {
         const error = new Error(res.error);
@@ -65,19 +61,19 @@ class Login extends React.Component {
 
   render() {
     return (
-        <div className="base-container">
+        <div className="form-base-container">
           <div className="header">Login</div>
           <div className="content">
-            <div className="form">
-              <div className="form-group">
-                <label htmlFor="Email">Email</label>
-                <input type="text" name="email" value={ this.state.email } placeholder="Enter Email" onChange={ this.handleChange }/>
-              </div>
-              <div className="form-group">
-                <label htmlFor="password">Password</label>
-                <input type="password" name="password" placeholder="Enter Password" value={ this.state.password } onChange={ this.handleChange }/>
-              </div>
-            </div>
+            <Form>
+              <Form.Group>
+                <Form.Label htmlFor="Email">Email</Form.Label>
+                <Form.Control type="email" name="email" value={ this.state.email } placeholder="Enter Email" onChange={ this.handleChange }/>
+              </Form.Group>
+              <Form.Group>
+                <Form.Label htmlFor="password">Password</Form.Label>
+                <Form.Control type="password" name="password" placeholder="Enter Password" value={ this.state.password } onChange={ this.handleChange }/>
+              </Form.Group>
+            </Form>
           </div>
         <div className="footer">
           <button type="submit" className="btn" onClick={this.login}>
