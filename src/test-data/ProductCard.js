@@ -17,7 +17,7 @@ export default function ProductCard(props) {
             <div>
                 <h3>{product.name}</h3>
                 <p> Price: ${product.price}</p>
-                <p> Description: {product.description}
+                <p> Description: {product.description}</p>
             </div>
         </div>
     )

@@ -56,6 +56,18 @@ app.get('/api/products', (req, res) => {
   });
 });
 
+app.post('/api/createProduct', (req, res) => {
+  pool.query(`INSERT INTO products (name, price, description, photo) VALUES 
+("${req.body.name}", "${req.body.price}", "${req.body.description}", "${req.body.photo}",
+0);`, (err, rows) => {
+  if (err) {
+	res.status(500).send(err);
+  } else {
+	res.status(200).send(rows);
+  }
+ });
+});
+
 app.post('/api/register', (req, res) => {
   pool.query(`INSERT INTO user (email, password, first_name, last_name, is_seller) VALUES ("${req.body.email}", "${req.body.password}", "${req.body.first_name}", "${req.body.last_name}", 0);`, (err, rows) => {
     if (err) {
