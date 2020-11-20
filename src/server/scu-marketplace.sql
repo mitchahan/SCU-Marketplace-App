@@ -51,7 +51,6 @@ CREATE TABLE IF NOT EXISTS `scu-marketplace`.`user_products` (
   `email` VARCHAR(255) NOT NULL,
   `product_id` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`email`, `product_id`),
-  UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE,
   UNIQUE INDEX `product_id_UNIQUE` (`product_id` ASC) VISIBLE)
 ENGINE = InnoDB;
 

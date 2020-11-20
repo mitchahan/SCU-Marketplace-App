@@ -76,20 +76,21 @@ app.get('/api/products', (req, res) => {
 });
 
 app.post('/api/createProduct', (req, res) => {
-  pool.query(`INSERT INTO products (product_id, name, price, description, photo) VALUES ("${req.body.product_id}", "${req.body.name}", "${req.body.price}", "${req.body.description}", "${req.body.photo}");`,
+  console.log(req.body);
+  pool.query(`INSERT INTO products (product_id, name, price, description, photo) VALUES ("${req.body.product_id}", "${req.body.name}", ${req.body.price}, "${req.body.description}", "${req.body.photo}");`,
     (err, rows) => {
       if (err) {
         res.status(500).send(err);
       } else {
         res.status(200).send(rows);
       }
- });
- pool.query(`INSERT INTO user_products (email, product_id) VALUES ("${req.body.email}", "${req.body.product_id}");`,
+  });
+  pool.query(`INSERT INTO user_products (email, product_id) VALUES ("${req.body.email}", "${req.body.product_id}");`,
     (err, rows) => {
       if (err) {
         res.status(500).send(err);
       } else {
         res.status(200).send(rows);
       }
- });
+  });
 });

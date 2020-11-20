@@ -13,7 +13,7 @@ import './App.scss';
 class App extends React.Component {
   render() {
     return (
-      <body>
+      <div>
         {/* Create the Router to be able to change between pages seamlessly*/}
         <BrowserRouter forceRefresh={true}>
           <div className="nav-container">
@@ -31,7 +31,7 @@ class App extends React.Component {
             </Switch>
           </div>
         </BrowserRouter>
-      </body>
+      </div>
     );
   };
 }

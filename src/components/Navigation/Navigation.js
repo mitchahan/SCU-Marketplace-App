@@ -16,9 +16,7 @@ class Navigation extends React.Component {
     }
 
     logout() {
-        // window.sessionStorage.setItem('email', undefined);
-        // window.sessionStorage.setItem('password', undefined);
-        // window.sessionStorage.setItem('isLoggedIn', false);
+        window.sessionStorage.removeItem('isLoggedIn');
     }
 
     render() {
