@@ -20,11 +20,12 @@ class ProductCreation extends React.Component {
         super(props);
         
         this.state = {
-            product_id: undefined,
-            name: undefined,
-            price: undefined,
-            description: undefined,
-            photo: undefined
+          email: UserSession.getEmail(),
+          product_id: undefined,
+          name: undefined,
+          price: undefined,
+          description: undefined,
+          photo: undefined
         };
         
         this.handleChange = this.handleChange.bind(this);
@@ -33,6 +34,7 @@ class ProductCreation extends React.Component {
     
     createProduct() {
         const product = {
+            email: this.state.email,
             product_id: uuid(),
             name: this.state.name,
             price: this.state.price,
@@ -40,29 +42,16 @@ class ProductCreation extends React.Component {
             photo: this.state.photo
         }
         
-            fetch('/api/createProduct', {
-            method: 'POST',
-            body: JSON.stringify(product),
-            headers: {
-                'Content-Type': 'applicatoin/json'
-            }
+        fetch('/api/createProduct', {
+          method: 'POST',
+          body: JSON.stringify(product),
+          headers: {
+              'Content-Type': 'applicatoin/json'
+          }
         })
         .then(res => {
             if(res.status === 200) {
-                UserSession.setProductID(this.state.product_id);
-                UserSession.setName(this.state.name);
-                UserSession.setPrice(this.state.price);
-                UserSession.setDescription(this.state.description);
-                UserSession.setPhoto(this.state.photo);
-                
-                this.setState({
-                    product_id: UserSession.getProductID(),
-                    name: UserSession.getName(),
-                    price: UserSession.getPrice(),
-                    description: UserSession.getDescription(),
-                    photo: UserSession.getPhoto()
-                });
-                this.props.history.push('/');
+              this.props.history.push('/');
             } else {
                 const error = new Error(res.error);
                 throw error;
@@ -92,7 +81,7 @@ class ProductCreation extends React.Component {
                 </div>
                 <div className="form-group">
                   <label htmlFor="Price">Price</label>
-                <input type="number" name="price" placeholder="Price" value = {this.state.price} onChange={this.handleChange}/>
+                <input type="number" name="price" placeholder="Price" value = {this.state.price} onChange={this.handleChange} step=".01"/>
                 </div>
                 <div className="form-group">
                   <label htmlFor="Description">Description</label>
@@ -101,7 +90,7 @@ class ProductCreation extends React.Component {
                 </div>
                 <div className="form-group">
                   <label htmlFor="Image URL">ImageURL</label>
-                <input type="url" name="image" placeholder="Image URL" value = {this.state.photo} onChange={this.handleChange}/>
+                <input type="text" name="image" placeholder="Image URL" value = {this.state.photo} onChange={this.handleChange}/>
                 </div>
               </div>
             </div>
