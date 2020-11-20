@@ -7,7 +7,7 @@ import React from 'react'
 import ProductDetails from '../../test-data/ProductDetails'
 
 const SearchBar = ({input:keyword,onChange:setKeyword}) => {
-  const BarStyling = {width:"40rem", backround:"#F2F1F9", border:"solid", padding:".5rem", float:"left"};
+  const BarStyling = {width:"40rem", background:"#F2F1F9", border:"solid", padding:".5rem", float:"left"};
   return(
     //search bar
     <div className = "base-container">
@@ -17,9 +17,6 @@ const SearchBar = ({input:keyword,onChange:setKeyword}) => {
       placeholder={"Search Product"}
       //onChange={(e) => setKeyword(e.target.value)}
       />
-      <div className = "searchButton">
-        <button type = "button" className="btn" float="right">Search</button>
-      </div>
     </div>
   )
 }
