@@ -46,7 +46,7 @@ class ProductCreation extends React.Component {
           method: 'POST',
           body: JSON.stringify(product),
           headers: {
-              'Content-Type': 'applicatoin/json'
+              'Content-Type': 'application/json'
           }
         })
         .then(res => {
