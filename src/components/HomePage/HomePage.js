@@ -11,7 +11,7 @@ class HomePage extends React.Component {
         <div className="header"> Search: </div>
         <SearchBar />
         <div className="top-right">
-          {window.sessionStorage.getItem('isLoggedIn')
+          {window.sessionStorage.getItem('isLoggedIn') === "true"
             ? <button type = "button" className="btn" float="right"><NavLink className="link" to="/create-product">Create New Listing</NavLink></button>
             : <></>
           }
