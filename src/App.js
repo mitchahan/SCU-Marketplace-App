@@ -4,10 +4,10 @@ import About from './components/About';
 import Navigation from './components/Navigation/Navigation';
 import HomePage from './components/HomePage/HomePage';
 import User from './components/User';
-import ProductDetails from './test-data/ProductDetails';
 import Login from './components/Login Page/Login';
 import Register from './components/Login Page/Register';
 import ProductCreation from './components/Product Creation Page/ProductCreation';
+import ProductCard from './components/HomePage/ProductCard';
 import './App.scss';
 
 class App extends React.Component {
@@ -24,7 +24,7 @@ class App extends React.Component {
               <Route path = "/" component = {HomePage} exact/>
               <Route path = "/about" component = {About}/>
               <Route path = "/user" component = {User}/>
-              <Route path = "/products" component = {ProductDetails}/>
+              <Route path = "/products" component = {ProductCard}/>
               <Route path = "/login" component = {Login}/>
               <Route path = "/register" component = {Register}/>
               <Route path = "/create-product" component = {ProductCreation}/>
