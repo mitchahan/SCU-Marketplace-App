@@ -15,12 +15,12 @@ class Navigation extends React.Component {
             <Navbar bg="dark" variant="dark" expand="lg" className="pt-3 pb-3">
                 <Navbar.Brand>
                     <NavLink className="link" to="/">
-                        <img 
+                        <img
                             src={Logo}
                             width="30"
                             height="30"
                             className="d-inline-block align-top"
-                            alt="SCU" 
+                            alt="SCU"
                         />{' '}
                         SCU Marketplace
                     </NavLink>

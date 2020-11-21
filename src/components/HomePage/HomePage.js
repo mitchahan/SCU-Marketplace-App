@@ -2,10 +2,11 @@ import React from 'react'
 import { NavLink } from 'react-router-dom';
 import SearchBar from './SearchBar.js';
 import './style.scss';
+import ProductCard from './ProductCard.js';
 
 
 class HomePage extends React.Component {
-  render() {  
+  render() {
     return(
       <div className = "base-container">
         <div className="header"> Search: </div>
@@ -16,6 +17,9 @@ class HomePage extends React.Component {
             : <></>
           }
         </div>
+        <ProductCard />
+        <ProductCard />
+        <ProductCard />
       </div>
     );
   }
