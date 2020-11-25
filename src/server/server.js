@@ -94,3 +94,14 @@ app.post('/api/createProduct', (req, res) => {
       }
   });
 });
+
+app.post('/api/search', (req, res) => {
+  pool.query(`SELECT * FROM products WHERE ("name" LIKE '%${req.body.query}%') OR ("description" LIKE '%${req.body.query}%');`,
+  (err, rows) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(rows);
+    }
+  });
+});
