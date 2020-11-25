@@ -1,9 +1,10 @@
-import React from 'react'
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import SearchBar from './SearchBar.js';
 import './style.scss';
 import ProductCard from './ProductCard.js';
-
+import Button from 'react-bootstrap/Button';
+import SortFilter from './SortFilter.js'
 
 class HomePage extends React.Component {
   render() {
@@ -16,6 +17,9 @@ class HomePage extends React.Component {
             ? <button type = "button" className="btn" float="right"><NavLink className="link" to="/create-product">Create New Listing</NavLink></button>
             : <></>
           }
+        </div>
+        <div className="top-right">
+          <SortFilter />
         </div>
         <ProductCard />
         <ProductCard />
