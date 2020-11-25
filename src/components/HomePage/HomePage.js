@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import SearchBar from './SearchBar.js';
 import './style.scss';
-import ProductCard from './ProductCard.js';
+import ProductDeck from './ProductDeck.js';
 import Button from 'react-bootstrap/Button';
 import SortFilter from './SortFilter.js'
 
@@ -21,9 +21,7 @@ class HomePage extends React.Component {
         <div className="top-right">
           <SortFilter />
         </div>
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
+        <ProductDeck />
       </div>
     );
   }
