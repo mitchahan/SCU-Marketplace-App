@@ -9,7 +9,20 @@ class ProductCard extends React.Component {
       products: []
     }
   }
-
+  componentDidMount() {
+    fetch('/api/products')
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            products: result
+          });
+        },
+        (error)=>{
+          this.setState({ error });
+        }
+      );
+  }
   render() {
     const { error, products} = this.state;
 
