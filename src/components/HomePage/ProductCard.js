@@ -1,5 +1,7 @@
 import React from 'react';
 import './style.scss'
+import {Card} from 'react-bootstrap';
+import {Button} from 'react-bootstrap';
 
 class ProductCard extends React.Component {
   constructor(props) {
@@ -9,20 +11,20 @@ class ProductCard extends React.Component {
       products: []
     }
   }
-  componentDidMount() {
-    fetch('/api/products')
-      .then(res => res.json())
-      .then(
-        (result) => {
-          this.setState({
-            products: result
-          });
-        },
-        (error)=>{
-          this.setState({ error });
-        }
-      );
-  }
+  // componentDidMount() {
+  //   fetch('/api/products')
+  //     .then(res => res.json())
+  //     .then(
+  //       (result) => {
+  //         this.setState({
+  //           products: result
+  //         });
+  //       },
+  //       (error)=>{
+  //         this.setState({ error });
+  //       }
+  //     );
+  // }
   render() {
     const { error, products} = this.state;
 
@@ -36,13 +38,17 @@ class ProductCard extends React.Component {
     } else {
       return(
         <div>
-          <h2>Products</h2>
-            <div className="card-content">
-                <h3 className = "card-title"></h3>
-                <p><small>Product name: </small> Chair </p>
-                <p> Price: <small>$56.99</small></p>
-                <p className="card-desc">This chair is my favorite chair, I have had it since I was 2 years old.</p>
-             </div>
+          <Card border="dark" style={{ width: '18rem' }}>
+            <Card.Img variant="top" src="https://www.ikea.com/us/en/images/products/martin-chair-black-black__0729761_PE737128_S5.JPG"/>
+            <Card.Body>
+              <Card.Title>Chair</Card.Title>
+              <Card.Subtitle>Price: $12.00</Card.Subtitle>
+              <Card.Text>
+                It's a sturdy chair worth the price
+              </Card.Text>
+              <Button variant="primary">Link to the user page</Button>
+            </Card.Body>
+          </Card>
            {/*products.map(product => (
              <tr key={product.product_id}>
                  <td>{product.name}</td>
