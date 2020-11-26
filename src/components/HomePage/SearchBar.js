@@ -3,6 +3,7 @@
  * Description: This the homepage. Expected functionality includes the nav bar, a search par for producs, and a button to create a new listing.
  */
 
+<<<<<<< HEAD
 import React from 'react';
 import { Button, FormControl, InputGroup } from 'react-bootstrap';
 
@@ -74,6 +75,23 @@ export default class SearchBar extends React.Component {
       </InputGroup>
     );
   }
+=======
+import React from 'react'
+import ProductCard from './ProductCard.js';
+
+const SearchBar = ({input:keyword,onChange:setKeyword}) => {
+  const BarStyling = {width:"40rem", backround:"#F2F1F9", border:"solid", padding:".5rem", float:"left"};
+  return(
+    //search bar
+    <input style={BarStyling}
+    key="random1"
+    value= {keyword}
+    placeholder={"Search Product"}
+    //onChange={(e) => setKeyword(e.target.value)}
+    />
+
+  )
+>>>>>>> develop
 }
 
 // const SearchBar = ({input:keyword,onChange:setKeyword}) => {

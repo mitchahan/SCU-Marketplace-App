@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@mysql/xdevapi": "8.0.22",
     "@testing-library/jest-dom": "^5.11.5",
     "@testing-library/react": "^11.1.1",
     "@testing-library/user-event": "^12.2.0",
@@ -21,7 +22,7 @@
     "uuid": "^8.3.1",
     "web-vitals": "^0.2.4"
   },
-  "proxy": "http://localhost:10061",
+  "proxy": "http://localhost:8000",
   "secure": false,
   "scripts": {
     "start": "react-scripts start",

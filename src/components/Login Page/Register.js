@@ -46,6 +46,7 @@ class Register extends React.Component {
           window.sessionStorage.setItem('email', this.state.email);
           window.sessionStorage.setItem('password', this.state.password);
           window.sessionStorage.setItem('isLoggedIn', true);
+          
           this.props.history.push('/');
         } else {
           const error = new Error(res.error);

@@ -1,8 +1,9 @@
-import React from 'react'
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Button, FormControl, InputGroup } from 'react-bootstrap';
 import './style.scss';
-
+import ProductDeck from './ProductDeck.js';
+import SortFilter from './SortFilter.js'
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -75,20 +76,15 @@ class HomePage extends React.Component {
           </InputGroup.Append>
         </InputGroup>
         <div className="top-right">
-          {window.sessionStorage.getItem('isLoggedIn')
+          {window.sessionStorage.getItem('isLoggedIn') === "true"
             ? <button type = "button" className="btn" float="right"><NavLink className="link" to="/create-product">Create New Listing</NavLink></button>
             : <></>
           }
         </div>
-        <h2>Products</h2>
-        {products.map(product => (
-          <tr key={product.product_id}>
-              <td>{product.name}</td>
-              <td>{product.price}</td>
-              <td>{product.description}</td>
-              <td>{product.photo}</td>
-          </tr>
-        ))}
+        <div className="top-right">
+          <SortFilter />
+        </div>
+        <ProductDeck />
       </div>
     );
   }
