@@ -1,19 +1,38 @@
 import React from 'react';
-import ProductCard from './ProductCard.js'
+import './style.scss';
+import { Link } from 'react-router-dom';
+import {Card} from 'react-bootstrap';
 import {CardDeck} from 'react-bootstrap';
 import {CardColumns} from 'react-bootstrap';
 
 
-class ProductDeck extends React.Component {
+export default class ProductDeck extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-          error: null,
-          products: []
+          error: props.error,
+          products: props.products
         }
-      }
+    }
+
+    componentDidMount() {
+        fetch('/api/products')
+        .then(res => res.json())
+        .then(
+            (result) => {
+                this.setState({
+                    products: result
+                });
+            },
+            (error)=>{
+                this.setState({ error });
+            }
+        );
+    }
+    
     render() {
         const { error, products} = this.state;
+        const imageStyle = { maxHeight: "50%", width: "100%" }
         if(error) {
             return (
               <div>
@@ -23,18 +42,25 @@ class ProductDeck extends React.Component {
             )
           } else {
             return(
-                <div>
+                <div className="pl-5 pr-0">
                     <CardDeck>
                         <CardColumns>
-                            <ProductCard />
-                            <ProductCard />
-                            <ProductCard />
-                            <ProductCard />
-                            <ProductCard />
-                            <ProductCard />
-                            <ProductCard />
-                            <ProductCard />
-                            <ProductCard />
+                        {products.map(product => (
+                            <Card key={products.product_id} border="dark" style={{ width: '18rem' }}>
+                                <Card.Img variant="top" style={imageStyle} src={product.photo}/>
+                                <Card.Body>
+                                    <Card.Title>{product.name}</Card.Title>
+                                    <Card.Subtitle>Price: ${product.price}</Card.Subtitle>
+                                    <Card.Text>
+                                        {product.description}
+                                    </Card.Text>
+                                    {window.sessionStorage.getItem('isLoggedIn') === "true"
+                                        ? <Link className="btn" variant="primary" to="/">Purchase</Link>
+                                        : <Link className="btn" variant="primary" to="/register">Purchase</Link>
+                                    }
+                                </Card.Body>
+                            </Card>
+                        ))}
                         </CardColumns>
                     </CardDeck>
                 </div>
@@ -42,4 +68,3 @@ class ProductDeck extends React.Component {
         }
     }
 }
-    export default ProductDeck

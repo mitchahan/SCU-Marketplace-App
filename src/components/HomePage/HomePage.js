@@ -1,8 +1,8 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { Button, FormControl, InputGroup } from 'react-bootstrap';
+import { NavLink, Link } from 'react-router-dom';
+import { Card, CardDeck, CardColumns, Row, Col, Button, FormControl, InputGroup, Container } from 'react-bootstrap';
 import './style.scss';
-import ProductDeck from './ProductDeck.js';
+// import ProductDeck from './ProductDeck.js';
 import SortFilter from './SortFilter.js'
 
 class HomePage extends React.Component {
@@ -17,6 +17,21 @@ class HomePage extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.search = this.search.bind(this);
+  }
+
+  componentDidMount() {
+    fetch('/api/products')
+    .then(res => res.json())
+    .then(
+        (result) => {
+            this.setState({
+                products: result
+            });
+        },
+        (error)=>{
+            this.setState({ error });
+        }
+    );
   }
 
   handleChange({ target }) {
@@ -52,9 +67,27 @@ class HomePage extends React.Component {
 
   render() {
     const fontSize = {fontSize: "1rem"};
-    const { error, products} = this.state;
+    const imageStyle = { maxHeight: "50%", width: "100%" }
+    const { error, products } = this.state;
     return(
       <div className = "base-container">
+        <Container fluid>
+          <Row>
+            <Col xs={6}>
+              <div className="pt-3 p-2 d-inline-flex">
+                <SortFilter />
+              </div>
+            </Col>
+            <Col xs={6} className="justify-content-end d-inline-flex">
+              <div className="p-2 d-inline-flex">
+                {window.sessionStorage.getItem('isLoggedIn') === "true"
+                  ? <button type = "button" className="btn pr-1" float="right"><NavLink className="link" to="/create-product">Create New Listing</NavLink></button>
+                  : <></>
+                }
+              </div>
+            </Col>
+          </Row>
+        </Container>
         <div className="header"> Search: </div>
         <InputGroup className="mb-3 pr-3 pl-3">
           <FormControl
@@ -75,16 +108,31 @@ class HomePage extends React.Component {
             </Button>
           </InputGroup.Append>
         </InputGroup>
-        <div className="top-right">
-          {window.sessionStorage.getItem('isLoggedIn') === "true"
-            ? <button type = "button" className="btn" float="right"><NavLink className="link" to="/create-product">Create New Listing</NavLink></button>
-            : <></>
-          }
-        </div>
-        <div className="top-right">
-          <SortFilter />
-        </div>
-        <ProductDeck />
+        {error
+          ? <p>{"Nothing Found."}</p>
+          : <div className="pl-5 pr-0">
+              <CardDeck>
+                  <CardColumns>
+                  {products.map(product => (
+                      <Card key={products.product_id} border="dark" style={{ width: '18rem' }}>
+                          <Card.Img variant="top" style={imageStyle} src={product.photo}/>
+                          <Card.Body>
+                              <Card.Title>{product.name}</Card.Title>
+                              <Card.Subtitle>Price: ${product.price}</Card.Subtitle>
+                              <Card.Text>
+                                  {product.description}
+                              </Card.Text>
+                              {window.sessionStorage.getItem('isLoggedIn') === "true"
+                                  ? <Link className="btn" variant="primary" to="/">Purchase</Link>
+                                  : <Link className="btn" variant="primary" to="/register">Purchase</Link>
+                              }
+                          </Card.Body>
+                      </Card>
+                  ))}
+                  </CardColumns>
+              </CardDeck>
+          </div>
+        }
       </div>
     );
   }

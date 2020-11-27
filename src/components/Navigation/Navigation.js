@@ -30,7 +30,7 @@ class Navigation extends React.Component {
                     {window.sessionStorage.getItem('isLoggedIn') === "true"
                         ? <>
                             <NavLink className="link" to="/about">About</NavLink>
-                            <NavLink className="link" to="/products">Products</NavLink>
+                            <NavLink className="link" to="/products">My Products</NavLink>
                             <NavLink className="link" to="/user">Account</NavLink>
                             <NavLink className="link" to="/" onClick={ () => { window.sessionStorage.setItem('isLoggedIn', false) } }>Logout</NavLink>
                           </>
