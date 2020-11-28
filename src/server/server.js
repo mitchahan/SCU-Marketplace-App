@@ -85,6 +85,9 @@ app.post('/api/createProduct', (req, res) => {
         res.status(200).send(rows);
       }
   });
+});
+
+app.post('/api/linkProduct', (req, res) => {
   pool.query(`INSERT INTO user_products (email, product_id) VALUES ("${req.body.email}", "${req.body.product_id}");`,
     (err, rows) => {
       if (err) {
@@ -92,5 +95,17 @@ app.post('/api/createProduct', (req, res) => {
       } else {
         res.status(200).send(rows);
       }
+  });
+});
+
+app.post('/api/search', (req, res) => {
+  pool.query(`SELECT product_id, name, price, description, photo FROM (SELECT '1' as relevance, product_id, name, price, description, photo FROM products WHERE (description LIKE '%${req.body.query}%' OR name LIKE '%${req.body.query}%') union distinct select '10' as relevance, product_id, name, price, description, photo FROM products WHERE (description LIKE '%${req.body.query.toLowerCase()}%' OR name LIKE '%${req.body.query.toLowerCase()}%') union distinct select '100' as relevance, product_id, name, price, description, photo FROM products WHERE (description LIKE '%${req.body.query[0].toUpperCase() + req.body.query.substring(1)}%' OR name LIKE '%${req.body.query.toLowerCase()}%') union distinct select '100' as relevance, product_id, name, price, description, photo FROM products WHERE (description LIKE '%${req.body.query.toLowerCase()}%' OR name LIKE '%${req.body.query[0].toUpperCase() + req.body.query.substring(1)}%')) AS query order by relevance asc;`,
+  (err, rows) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(rows);
+      console.log(rows);
+    }
   });
 });

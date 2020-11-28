@@ -20,14 +20,14 @@ class SortFilter extends React.Component {
     render(){
         return(
             <form onSubmit={this.handleSubmit}>
-                <label>
-                    Sort
+                <label className="pl-2 pr-2">
+                    Sort{' '}
                     <select value={this.state.value} onChange={this.handleChange}>
-                        <option value = "ascending">Price:Low to High</option>
-                        <option value = "descending">Price:High to Low</option>
+                        <option value = "ascending">Price: Low to High</option>
+                        <option value = "descending">Price: High to Low</option>
                     </select>
                 </label>
-                <input type="submit" value="Submit" />
+                <input className="pl-2 pr-2" type="submit" value="Submit" />
             </form>
         );
     }
