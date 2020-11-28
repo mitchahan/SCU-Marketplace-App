@@ -15,6 +15,34 @@ class SortFilter extends React.Component {
     handleSubmit(event){
         alert('Sorting in '+ this.state.value+' order by price');
         event.preventDefault();
+        if (this.state.value='ascending') {
+            fetch('/api/sortProductAscending')
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    this.setState({
+                        products: result
+                    });
+                },
+                (error) => {
+                    this.setState({ error });
+                }
+            );
+        }
+        if (this.state.value='descending') {
+            fetch('/api/sortProductDescending')
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    this.setState({
+                        products: result
+                    });
+                },
+                (error) => {
+                    this.setState({ error });
+                }
+            );
+        }
     }
 
     render(){
