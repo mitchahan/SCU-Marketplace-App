@@ -1,9 +1,9 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import { Card, CardDeck, CardColumns, Row, Col, Button, FormControl, InputGroup, Container } from 'react-bootstrap';
+import { Form, Card, CardDeck, CardColumns, Row, Col, Button, FormControl, InputGroup, Container } from 'react-bootstrap';
 import './style.scss';
 // import ProductDeck from './ProductDeck.js';
-import SortFilter from './SortFilter.js'
+// import SortFilter from './SortFilter.js'
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -12,11 +12,13 @@ class HomePage extends React.Component {
     this.state = {
       search: '',
       error: undefined,
-      products: []
+      products: [],
+      value: 'default'
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.search = this.search.bind(this);
+    this.sort = this.sort.bind(this);
   }
 
   componentDidMount() {
@@ -65,6 +67,26 @@ class HomePage extends React.Component {
     );
   }
 
+  sort() {
+    if (this.state.value === 'ascending') {
+      const sortedProducts = this.state.products.sort((a, b) => {
+        return a.price - b.price;
+      });
+
+      this.setState({
+        products: sortedProducts
+      });
+    } else if (this.state.value === 'descending') {
+      const sortedProducts = this.state.products.sort((a, b) => {
+        return b.price - a.price;
+      });
+
+      this.setState({
+        products: sortedProducts
+      });
+    }
+  }
+
   render() {
     const fontSize = {fontSize: "1rem"};
     const imageStyle = { maxHeight: "50%", width: "100%" }
@@ -73,9 +95,25 @@ class HomePage extends React.Component {
       <div className = "base-container">
         <Container fluid>
           <Row>
-            <Col xs={6}>
+            <Col xs="auto">
               <div className="pt-3 p-2 d-inline-flex">
-                <SortFilter />
+                <Form>
+                  <Form.Row className="align-items-center">
+                    <Col xs="auto">
+                      <Form.Control as="select" name="value" defaultValue="default" size="lg" onChange={this.handleChange}>
+                        <option value="default">Sort: default</option>
+                        <option value="ascending">Price: low to high</option>
+                        <option value="descending">Price: high to low</option>
+                      </Form.Control>
+                    </Col>
+                    <Col xs="auto">
+                      <Button className="btn" onClick={this.sort}>
+                        Submit
+                      </Button>
+                    </Col>
+                  </Form.Row>
+                </Form>
+                {/* <SortFilter sort={this.state.sort} products={this.state.products} /> */}
               </div>
             </Col>
             <Col xs={6} className="justify-content-end d-inline-flex">
