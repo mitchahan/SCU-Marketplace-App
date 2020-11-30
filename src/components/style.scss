@@ -5,10 +5,31 @@
     font-size: 40px;
     font-family: "Open Sans", sans-serif;
     color: currentColor;
+    text-shadow: 2px 2px #ffffff;
   }
   .top-right {
     position: absolute;
     top: 120px;
     right:10px;
   }
+  .description {
+    font-size: calc(8px + 8 * ( (100vw - 420px) / 480));
+    padding-top: 10px;
+    width: 95%;
+    height: 95%;
+    text-align: justify;
+  }
+  .Text-Wrap-Right {
+    float: left;
+    margin: 15px;
+  }
+  .Text-Wrap-Left {
+    float: right;
+    margin: 15px;
+  }
+  .img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9;
+}
 }
