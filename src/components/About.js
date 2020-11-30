@@ -1,7 +1,7 @@
 import React from "react"
 import './style.scss';
-import Recycle from "./recycle.png";
-import Trash from "./Trash.png"
+import Recycle from "./About Page/recycle.png";
+import Trash from "./About Page/Trash.png"
 
 //basic about statement that also types out in front of the user for a little extra style points
 const About = () => {
@@ -22,8 +22,8 @@ const About = () => {
       <div className = "description">
         <img class = "Text-Wrap-Left"
             src={Trash}
-            width="100px"
-            height="100px"
+            width="20%"
+            height="auto"
             alt="SCU"
         />
         <p>
