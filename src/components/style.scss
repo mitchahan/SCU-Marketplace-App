@@ -13,9 +13,10 @@
     right:10px;
   }
   .description {
+    font-size: calc(8px + 8 * ( (100vw - 420px) / 480));
     padding-top: 10px;
-    width: 90%;
-    height: 90%;
+    width: 95%;
+    height: 95%;
     text-align: justify;
   }
   .Text-Wrap-Right {
