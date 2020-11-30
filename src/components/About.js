@@ -8,7 +8,7 @@ const About = () => {
   return(
     <div className = "base-container">
       <div className = "header">
-        <h1>SCU Marketplace</h1>
+        <h>SCU Marketplace</h>
       </div>
       <div className = "description">
         <p>
@@ -27,7 +27,7 @@ const About = () => {
             alt="SCU"
         />
         <p>
-          At the end of every school year, seniors are tasked with a difficult decision regarding their belongings. Do they make a run to the dump to throw them all away? Do they contact friends to see if they need any used furniture/appliances? Both of these are viable options, but oftentimes seniors do not have the extra time to seek out buyers, so they end up throwing away perfectly functional goods.
+          At the end of every school year, seniors are tasked with a difficult decision regarding their belongings. Do they make a run to the dump to throw them all away? Do they contact friends to see if they need any used furniture or appliances? Oftentimes seniors do not have the extra time to seek out buyers, so they end up spending money to throw away perfectly functional goods.
         </p>
       </div>
 
