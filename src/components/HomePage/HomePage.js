@@ -17,6 +17,7 @@ class HomePage extends React.Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleKeypress = this.handleKeypress.bind(this);
     this.search = this.search.bind(this);
     this.sort = this.sort.bind(this);
   }
@@ -41,6 +42,13 @@ class HomePage extends React.Component {
         [target.name]: target.value
     });
   }
+
+  handleKeypress(e) {
+    // it triggers by pressing the enter key    
+    if (e.keyCode === 13) {
+      this.search();    
+    }
+  };  
 
   search() {
     const search = {
@@ -88,14 +96,14 @@ class HomePage extends React.Component {
   }
 
   render() {
-    const fontSize = {fontSize: "1rem"};
-    const imageStyle = { maxHeight: "50%", width: "100%" }
+    const fontSize = { fontSize: "1rem" };
+    const imageStyle = { maxHeight: "50%", width: "100%", borderRadius: "9px 9px 0 0" };
     const { error, products } = this.state;
     return(
       <div className = "base-container">
         <Container fluid>
           <Row>
-            <Col xs="auto">
+            <Col xs={6}>
               <div className="pt-3 p-2 d-inline-flex">
                 <Form>
                   <Form.Row className="align-items-center">
@@ -113,21 +121,20 @@ class HomePage extends React.Component {
                     </Col>
                   </Form.Row>
                 </Form>
-                {/* <SortFilter sort={this.state.sort} products={this.state.products} /> */}
               </div>
             </Col>
             <Col xs={6} className="justify-content-end d-inline-flex">
-              <div className="p-2 d-inline-flex">
+              <div className="p-2 justify-content-end d-inline-flex">
                 {window.sessionStorage.getItem('isLoggedIn') === "true"
-                  ? <button type = "button" className="btn pr-1" float="right"><NavLink className="link" to="/create-product">Create New Listing</NavLink></button>
+                  ? <button type = "button" className="btn pr-1" float="right"><NavLink className="link" to="/create-product">Create New Product</NavLink></button>
                   : <></>
                 }
               </div>
             </Col>
           </Row>
         </Container>
-        <div className="header"> Search: </div>
-        <InputGroup className="mb-3 pr-3 pl-3">
+        <div className="header"> SCU Marketplace </div>
+        <InputGroup className="mb-3 mr-3 pr-5 pl-5 pb-4 pt-3" onKeyPress={ this.handleKeypress }>
           <FormControl
             name="search"
             placeholder="Search..."
@@ -141,7 +148,8 @@ class HomePage extends React.Component {
               style={fontSize}
               variant="outline-primary" 
               type="submit"
-              onClick={ this.search }>
+              onClick={ this.search }
+            >
               Search
             </Button>
           </InputGroup.Append>
