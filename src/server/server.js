@@ -145,3 +145,15 @@ app.post('/api/sell', (req, res) => {
     }
   });
 });
+
+app.post('/api/myProducts', (req, res) => {
+  pool.query(`SELECT * FROM products INNER JOIN user_products ON products.product_id = user_products.product_id WHERE user_products.email='${req.body.email}';`,
+  (err, rows) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(rows);
+      console.log(rows);
+    }
+  });
+});
