@@ -29,7 +29,7 @@ export default class ProductDeck extends React.Component {
             }
         );
     }
-    
+
     render() {
         const { error, products} = this.state;
         const imageStyle = { maxHeight: "50%", width: "100%" }
@@ -55,7 +55,7 @@ export default class ProductDeck extends React.Component {
                                         {product.description}
                                     </Card.Text>
                                     {window.sessionStorage.getItem('isLoggedIn') === "true"
-                                        ? <Link className="btn" variant="primary" to="/">Purchase</Link>
+                                        ? <Link className="btn" variant="primary" to="/Purchase">Purchase</Link>
                                         : <Link className="btn" variant="primary" to="/register">Purchase</Link>
                                     }
                                 </Card.Body>

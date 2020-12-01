@@ -71,6 +71,7 @@ class HomePage extends React.Component {
     const { error, products } = this.state;
     return(
       <div className = "base-container">
+        <Link className="btn" variant="primary" to="/purchase">Purchase</Link>
         <Container fluid>
           <Row>
             <Col xs={6}>
@@ -101,7 +102,7 @@ class HomePage extends React.Component {
           <InputGroup.Append>
             <Button
               style={fontSize}
-              variant="outline-primary" 
+              variant="outline-primary"
               type="submit"
               onClick={ this.search }>
               Search
@@ -123,7 +124,7 @@ class HomePage extends React.Component {
                                   {product.description}
                               </Card.Text>
                               {window.sessionStorage.getItem('isLoggedIn') === "true"
-                                  ? <Link className="btn" variant="primary" to="/">Purchase</Link>
+                                  ? <Link className="btn" variant="primary" to="/purchase">Purchase</Link>
                                   : <Link className="btn" variant="primary" to="/register">Purchase</Link>
                               }
                           </Card.Body>
