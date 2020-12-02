@@ -26,7 +26,14 @@ class Register extends React.Component {
   }
 
   register() {
-    // if (this.state.password == this.state.confirmPassword) {
+    console.log('password:', this.state.password);
+    console.log('confirm_password:', this.state.confirm_password);
+    console.log('email:', this.state.email);
+    if (this.state.password.localeCompare(this.state.confirm_password)) {
+      alert('Password Mismatch');
+    } else if (!this.state.email.toString().includes("@scu.edu")){
+      alert('You must register with an SCU email');
+    } else {
       const user = {
         email: this.state.email,
         first_name: this.state.first_name,
@@ -57,9 +64,7 @@ class Register extends React.Component {
         console.error(err);
         alert('Error creating account please try again');
       });
-    // } else {
-    //   alert('Password Mismatch');
-    // }
+    }
   }
 
   handleChange({ target }) {
@@ -92,7 +97,7 @@ class Register extends React.Component {
               </Form.Group>
               <Form.Group>
                 <Form.Label htmlFor="ConfirmPass">Confirm Password</Form.Label>
-                <Form.Control type="password" name="confirm_password" placeholder="Re-enter Password" value={ this.state.confirmPassword } onChange={ this.handleChange }/>
+                <Form.Control type="password" name="confirm_password" placeholder="Re-enter Password" value={ this.state.confirm_password } onChange={ this.handleChange }/>
               </Form.Group>
             </Form>
           
