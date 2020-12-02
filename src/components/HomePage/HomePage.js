@@ -24,9 +24,9 @@ class HomePage extends React.Component {
     .then(res => res.json())
     .then(
         (result) => {
-            this.setState({
-                products: result
-            });
+          this.setState({
+              products: result
+          });
         },
         (error)=>{
             this.setState({ error });
@@ -71,7 +71,6 @@ class HomePage extends React.Component {
     const { error, products } = this.state;
     return(
       <div className = "base-container">
-        <Link className="btn" variant="primary" to={`/products/${product.product_id}`}>Purchase</Link>
         <Container fluid>
           <Row>
             <Col xs={6}>
@@ -124,7 +123,7 @@ class HomePage extends React.Component {
                                   {product.description}
                               </Card.Text>
                               {window.sessionStorage.getItem('isLoggedIn') === "true"
-                                  ? <Link className="btn" variant="primary" to="/purchase">Purchase</Link>
+                                  ? <Link className="btn" variant="primary" to={`/product/${product.product_id}`}>Purchase</Link>
                                   : <Link className="btn" variant="primary" to="/register">Purchase</Link>
                               }
                           </Card.Body>

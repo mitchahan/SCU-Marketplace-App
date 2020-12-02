@@ -1,8 +1,8 @@
-import React from "react"
+import React from "react";
+import { withRouter } from "react-router";
 import '../style.scss';
 import {Card} from 'react-bootstrap';
 import {Button} from 'react-bootstrap';
-import Recycle from "../About Page/recycle.png";
 
 
 class Purchase extends React.Component {
@@ -10,40 +10,44 @@ class Purchase extends React.Component {
         super(props);
     
         this.state = {
-          email: undefined,
-          name: undefined,
-          description: undefined,
-          price: undefined,
-          photo: undefined
+          email: "",
+          name: "",
+          description: "",
+          price: "",
+          photo: ""
         };
+
+        this.getProduct = this.getProduct.bind(this);
     }
 
-    componentDidMount() {
-        let { product_id } = useParams();
-        fetch('/api/getProduct', {
-            method: 'POST',
-            body: JSON.stringify(product_id),
-            headers: {
-              'Content-Type': 'application/json'
-            }
-          })
-        .then(res => res.json())
-        .then(
-            (result) => {
-                this.setState({
-                    name: result.name,
-                    description: result.description,
-                    price: result.price,
-                    photo: result.photo
-                });
-            },
-            (error) => {
-                this.setState({ error });
-            }
-        );
+    async getProduct() {
+      const product_id = {
+        product_id: this.props.match.params.id,
+      }
+      
+      return await fetch('/api/getProduct', {
+          method: 'POST',
+          body: JSON.stringify(product_id),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+      .then(res => res.json());
     }
 
-  render(){
+    componentWillMount() {
+      this.getProduct().then(res =>
+        this.setState({
+          name: res.name,
+          description: res.description,
+          price: res.price,
+          photo: res.photo
+        })
+      );
+    }
+
+  render() {
+    console.log(this.state)
     return(
       <div className = "base-container">
         <Card border="dark" style={{ width: '30rem' }}>
@@ -52,9 +56,9 @@ class Purchase extends React.Component {
             <Card.Title>{this.state.name}</Card.Title>
             <Card.Subtitle>Price: ${this.state.price}</Card.Subtitle>
             <Card.Text>
-                {this.state.description}
+              {this.state.description}
             </Card.Text>
-            <Button variant="primary">Link to the user page</Button>
+            <p>Contact {this.getEmail().stringify()}</p>
           </Card.Body>
         </Card>
       </div>
@@ -62,4 +66,4 @@ class Purchase extends React.Component {
   };
 }
 
-export default Purchase
+export default withRouter(Purchase);
