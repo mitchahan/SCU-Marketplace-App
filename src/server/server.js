@@ -66,7 +66,7 @@ app.post('/api/login', (req, res) => {
 
 // Product Routes
 app.get('/api/products', (req, res) => {
-  pool.query(`SELECT * FROM products;`, (err, rows) => {
+  pool.query(`SELECT * FROM products WHERE is_sold=0;`, (err, rows) => {
     if (err) {
       res.send(err);
     } else {
@@ -77,7 +77,7 @@ app.get('/api/products', (req, res) => {
 
 app.post('/api/createProduct', (req, res) => {
   console.log(req.body);
-  pool.query(`INSERT INTO products (product_id, name, price, description, photo) VALUES ("${req.body.product_id}", "${req.body.name}", ${req.body.price}, "${req.body.description}", "${req.body.photo}");`,
+  pool.query(`INSERT INTO products (product_id, name, price, description, photo, is_sold) VALUES ("${req.body.product_id}", "${req.body.name}", ${req.body.price}, "${req.body.description}", "${req.body.photo}", ${req.body.is_sold});`,
     (err, rows) => {
       if (err) {
         res.status(500).send(err);
@@ -112,6 +112,30 @@ app.post('/api/search', (req, res) => {
 
 app.post('/api/myProducts', (req, res) => {
   pool.query(`SELECT * FROM products INNER JOIN user_products ON products.product_id = user_products.product_id WHERE user_products.email='${req.body.email}';`,
+  (err, rows) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(rows);
+      console.log(rows);
+    }
+  });
+});
+
+app.post('/api/delete', (req, res) => {
+  pool.query(`DELETE FROM products WHERE product_id='${req.body.product_id}';`,
+  (err, rows) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(rows);
+      console.log(rows);
+    }
+  });
+});
+
+app.post('/api/sell', (req, res) => {
+  pool.query(`UPDATE products SET is_sold=1 WHERE product_id='${req.body.product_id}' LIMIT 1;`,
   (err, rows) => {
     if (err) {
       res.status(500).send(err);

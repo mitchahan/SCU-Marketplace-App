@@ -1,12 +1,9 @@
 import React from 'react';
-import { NavLink, Link } from 'react-router-dom';
-import { Card, CardDeck, CardColumns, Row, Col, Button, FormControl, InputGroup, Container } from 'react-bootstrap';
+import { NavLink } from 'react-router-dom';
+import { Card, CardDeck, CardColumns, Row, Col, Button, Container } from 'react-bootstrap';
 import './style.scss';
-// import ProductDeck from './ProductDeck.js';
-import SortFilter from './SortFilter.js'
 
-class MyProducts extends React.Component {
-
+class HomePage extends React.Component {
   constructor(props) {
     super(props);
 
@@ -16,12 +13,21 @@ class MyProducts extends React.Component {
       products: []
     };
 
-    this.handleChange = this.handleChange.bind(this);
-    this.search = this.search.bind(this);
+    this.delete = this.delete.bind(this);
+    this.sell = this.sell.bind(this);
   }
 
   componentDidMount() {
-    fetch('/api/products')
+    const email = {
+      email: window.sessionStorage.getItem('email'),
+    };
+    fetch('/api/myProducts',{
+      method: 'POST',
+      body: JSON.stringify(email),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
     .then(res => res.json())
     .then(
         (result) => {
@@ -35,39 +41,91 @@ class MyProducts extends React.Component {
     );
   }
 
-  handleChange({ target }) {
-    this.setState({
-        [target.name]: target.value
-    });
-  }
+  delete(id) {
+    const product_id = {
+      product_id: id,
+    };
 
-  search() {
-    const search = {
-      query: this.state.search
-    }
-
-    fetch('/api/search', {
+    fetch('/api/delete',{
       method: 'POST',
-      body: JSON.stringify(search),
+      body: JSON.stringify(product_id),
       headers: {
         'Content-Type': 'application/json'
       }
     })
     .then(res => res.json())
     .then(
-      (result) => {
-        this.setState({
-          products: result
-        });
-      },
-      (error) => {
-        this.setState({ error });
-      }
+        () => {
+          const email = {
+            email: window.sessionStorage.getItem('email'),
+          };
+          fetch('/api/myProducts',{
+            method: 'POST',
+            body: JSON.stringify(email),
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          })
+          .then(res => res.json())
+          .then(
+              (result) => {
+                  this.setState({
+                      products: result
+                  });
+              },
+              (error)=>{
+                  this.setState({ error });
+              }
+          );
+        },
+        (error)=>{
+            this.setState({ error });
+        }
     );
   }
 
+  sell(id) {
+    const product_id = {
+      product_id: id,
+    };
+
+    fetch('/api/sell',{
+      method: 'POST',
+      body: JSON.stringify(product_id),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(res => res.json())
+    .then(() => {
+      const email = {
+        email: window.sessionStorage.getItem('email'),
+      };
+      fetch('/api/myProducts',{
+        method: 'POST',
+        body: JSON.stringify(email),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(res => res.json())
+      .then(
+          (result) => {
+              this.setState({
+                  products: result
+              });
+          },
+          (error)=>{
+              this.setState({ error });
+          }
+      );
+    },
+    (error)=>{
+        this.setState({ error });
+    });
+  }
+
   render() {
-    const fontSize = {fontSize: "1rem"};
     const imageStyle = { maxHeight: "50%", width: "100%" }
     const { error, products } = this.state;
     return(
@@ -76,7 +134,7 @@ class MyProducts extends React.Component {
           <Row>
             <Col xs={6}>
               <div className="pt-3 p-2 d-inline-flex">
-                <SortFilter />
+              
               </div>
             </Col>
             <Col xs={6} className="justify-content-end d-inline-flex">
@@ -89,33 +147,14 @@ class MyProducts extends React.Component {
             </Col>
           </Row>
         </Container>
-        <div className="header"> Search </div>
-        <InputGroup className="mb-3 pr-3 pl-3">
-          <FormControl
-            name="search"
-            placeholder="Search..."
-            aria-label="search"
-            aria-describedby="basic-addon2"
-            value={ this.state.search }
-            onChange={ this.handleChange }
-          />
-          <InputGroup.Append>
-            <Button
-              style={fontSize}
-              variant="outline-primary"
-              type="submit"
-              onClick={ this.search }>
-              Search
-            </Button>
-          </InputGroup.Append>
-        </InputGroup>
+        <div className="header"> My Products </div>
         {error
           ? <p>{"Nothing Found."}</p>
           : <div className="pl-5 pr-0">
               <CardDeck>
                   <CardColumns>
                   {products.map(product => (
-                      <Card key={products.product_id} border="dark" style={{ width: '18rem' }}>
+                      <Card key={product.product_id} border="dark" style={{ width: '18rem' }}>
                           <Card.Img variant="top" style={imageStyle} src={product.photo}/>
                           <Card.Body>
                               <Card.Title>{product.name}</Card.Title>
@@ -123,10 +162,9 @@ class MyProducts extends React.Component {
                               <Card.Text>
                                   {product.description}
                               </Card.Text>
-                              {window.sessionStorage.getItem('isLoggedIn') === "true"
-                                  ? <Link className="btn" variant="primary" to="/">Purchase</Link>
-                                  : <Link className="btn" variant="primary" to="/register">Purchase</Link>
-                              }
+                              {product.is_sold}
+                              <Button className="mb-2" variant="primary" onClick={() => this.delete(product.product_id)}>Delete</Button>
+                              <Button variant="primary" onClick={() => this.sell(product.product_id)}>Mark as sold</Button>
                           </Card.Body>
                       </Card>
                   ))}
@@ -139,5 +177,4 @@ class MyProducts extends React.Component {
   }
 }
 
-
-export default MyProducts;
+export default HomePage;

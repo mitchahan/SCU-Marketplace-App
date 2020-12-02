@@ -39,6 +39,7 @@ CREATE TABLE IF NOT EXISTS `scu-marketplace`.`products` (
   `price` DECIMAL(6,2) NULL DEFAULT NULL,
   `description` TEXT NULL DEFAULT NULL,
   `photo` TEXT NULL DEFAULT NULL,
+  `is_sold` SMALLINT NULL DEFAULT 0,
   PRIMARY KEY (`product_id`),
   UNIQUE INDEX `product_id_UNIQUE` (`product_id` ASC) VISIBLE)
 ENGINE = InnoDB;
