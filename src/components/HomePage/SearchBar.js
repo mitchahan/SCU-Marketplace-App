@@ -7,7 +7,7 @@ import React from 'react'
 import ProductCard from './ProductCard.js';
 
 const SearchBar = ({input:keyword,onChange:setKeyword}) => {
-  const BarStyling = {width:"40rem", backround:"#F2F1F9", border:"solid", padding:".5rem", float:"left"};
+  const BarStyling = {width:"40em", backround:"#F2F1F9", border:"solid", padding:".5em", float:"left"};
   return(
     //search bar
     <input style={BarStyling}

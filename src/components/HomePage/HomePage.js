@@ -66,7 +66,7 @@ class HomePage extends React.Component {
   }
 
   render() {
-    const fontSize = {fontSize: "1rem"};
+    const fontSize = { fontSize: "1rem" };
     const imageStyle = { maxHeight: "50%", width: "100%" }
     const { error, products } = this.state;
     return(
@@ -114,7 +114,7 @@ class HomePage extends React.Component {
               <CardDeck>
                   <CardColumns>
                   {products.map(product => (
-                      <Card key={products.product_id} border="dark" style={{ width: '18rem' }}>
+                      <Card key={products.product_id} border="dark" style={{ width: '18em' }}>
                           <Card.Img variant="top" style={imageStyle} src={product.photo}/>
                           <Card.Body>
                               <Card.Title>{product.name}</Card.Title>

@@ -2,8 +2,6 @@ import React from "react";
 import { withRouter } from "react-router";
 import '../style.scss';
 import {Card} from 'react-bootstrap';
-import {Button} from 'react-bootstrap';
-
 
 class Purchase extends React.Component {
     constructor(props) {
@@ -25,40 +23,42 @@ class Purchase extends React.Component {
         product_id: this.props.match.params.id,
       }
       
-      return await fetch('/api/getProduct', {
+      await fetch('/api/getProduct', {
           method: 'POST',
           body: JSON.stringify(product_id),
           headers: {
             'Content-Type': 'application/json'
           }
         })
-      .then(res => res.json());
+      .then(res => res.json())
+      .then(res => {
+        console.log(res);
+        this.setState({
+          name: res[0].name,
+          description: res[0].description,
+          price: res[0].price,
+          photo: res[0].photo
+        });
+      });
     }
 
-    componentWillMount() {
-      this.getProduct().then(res =>
-        this.setState({
-          name: res.name,
-          description: res.description,
-          price: res.price,
-          photo: res.photo
-        })
-      );
+    componentDidMount() {
+      this.getProduct();
     }
 
   render() {
-    console.log(this.state)
+    const imageStyle = { maxHeight: "40%", width: "100%" }
     return(
       <div className = "base-container">
-        <Card border="dark" style={{ width: '30rem' }}>
-          <Card.Img variant="top" src={this.state.photo}/>
+        <Card border="dark" className="mt-4 w-50">
+          <Card.Img variant="top" style={imageStyle} src={this.state.photo}/>
           <Card.Body>
             <Card.Title>{this.state.name}</Card.Title>
-            <Card.Subtitle>Price: ${this.state.price}</Card.Subtitle>
-            <Card.Text>
+            <Card.Subtitle className="pt-2">Price: ${this.state.price}</Card.Subtitle>
+            <Card.Text className="pt-2">
               {this.state.description}
             </Card.Text>
-            <p>Contact {this.getEmail().stringify()}</p>
+            {/* <p>Contact {this.getEmail().stringify()}</p> */}
           </Card.Body>
         </Card>
       </div>

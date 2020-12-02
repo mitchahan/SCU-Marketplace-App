@@ -76,7 +76,7 @@ app.get('/api/products', (req, res) => {
 });
 
 app.post('/api/getProduct', (req, res) => {
-  pool.query(`SELECT * FROM products WHERE product_id='${req.body.product_id}';`, (err, rows) => {
+  pool.query(`SELECT * FROM products WHERE product_id='${req.body.product_id}' LIMIT 1;`, (err, rows) => {
     if (err) {
       res.send(err);
     } else {

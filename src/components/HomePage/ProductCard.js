@@ -38,7 +38,7 @@ class ProductCard extends React.Component {
     } else {
       return(
         <div>
-          <Card border="dark" style={{ width: '18rem' }}>
+          <Card border="dark" style={{ width: '18em' }}>
             <Card.Img variant="top" src="https://www.ikea.com/us/en/images/products/martin-chair-black-black__0729761_PE737128_S5.JPG"/>
             <Card.Body>
               <Card.Title>Chair</Card.Title>
