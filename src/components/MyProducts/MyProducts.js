@@ -127,6 +127,7 @@ class HomePage extends React.Component {
 
   render() {
     const imageStyle = { maxHeight: "50%", width: "100%" }
+    const imageStyleSold = { maxHeight: "50%", width: "100%", opacity: .9, backgroundColor: 'gray' }
     const { error, products } = this.state;
     return(
       <div className = "base-container">
@@ -134,7 +135,6 @@ class HomePage extends React.Component {
           <Row>
             <Col xs={6}>
               <div className="pt-3 p-2 d-inline-flex">
-              
               </div>
             </Col>
             <Col xs={6} className="justify-content-end d-inline-flex">
@@ -153,8 +153,25 @@ class HomePage extends React.Component {
           : <div className="pl-5 pr-0">
               <CardDeck>
                   <CardColumns>
-                  {products.map(product => (
-                      <Card key={product.product_id} border="dark" style={{ width: '18rem' }}>
+                  {products.map(product => {
+                      if (product.is_sold === 1) {
+                        return( 
+                          <Card key={product.product_id} border="dark" style={{ width: '18rem', opacity: .8, backgroundColor: 'gray' }}>
+                            <Card.Img variant="top" style={imageStyleSold} src={product.photo}/>
+                            <Card.Body>
+                                <Card.Title>{product.name}</Card.Title>
+                                <Card.Subtitle>Price: ${product.price}</Card.Subtitle>
+                                <Card.Text>
+                                    {product.description}
+                                </Card.Text>
+                                {product.is_sold}
+                                <Button className="mb-2" variant="primary" onClick={() => this.delete(product.product_id)}>Delete</Button>
+                            </Card.Body>
+                        </Card>
+                        );
+                    } else {
+                      return( 
+                        <Card key={product.product_id} border="dark" style={{ width: '18rem' }}>
                           <Card.Img variant="top" style={imageStyle} src={product.photo}/>
                           <Card.Body>
                               <Card.Title>{product.name}</Card.Title>
@@ -166,8 +183,10 @@ class HomePage extends React.Component {
                               <Button className="mb-2" variant="primary" onClick={() => this.delete(product.product_id)}>Delete</Button>
                               <Button variant="primary" onClick={() => this.sell(product.product_id)}>Mark as sold</Button>
                           </Card.Body>
-                      </Card>
-                  ))}
+                        </Card>
+                      );
+                    }
+                  })}
                   </CardColumns>
               </CardDeck>
           </div>
