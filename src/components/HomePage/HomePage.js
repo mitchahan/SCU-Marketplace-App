@@ -71,7 +71,7 @@ class HomePage extends React.Component {
     const { error, products } = this.state;
     return(
       <div className = "base-container">
-        <Link className="btn" variant="primary" to="/purchase">Purchase</Link>
+        <Link className="btn" variant="primary" to={`/products/${product.product_id}`}>Purchase</Link>
         <Container fluid>
           <Row>
             <Col xs={6}>
