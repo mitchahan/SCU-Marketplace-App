@@ -7,6 +7,7 @@ import User from './components/User';
 import Login from './components/Login Page/Login';
 import Register from './components/Login Page/Register';
 import ProductCreation from './components/Product Creation Page/ProductCreation';
+import MyProducts from './components/MyProducts/MyProducts'
 import './App.scss';
 
 class App extends React.Component {
@@ -23,7 +24,7 @@ class App extends React.Component {
               <Route path = "/" component = {HomePage} exact/>
               <Route path = "/about" component = {About}/>
               <Route path = "/user" component = {User}/>
-              <Route path = "/products" component = {HomePage} />
+              <Route path = "/products" component = {MyProducts} />
               <Route path = "/login" component = {Login}/>
               <Route path = "/register" component = {Register}/>
               <Route path = "/create-product" component = {ProductCreation}/>

@@ -24,7 +24,8 @@ class ProductCreation extends React.Component {
           name: undefined,
           price: undefined,
           description: undefined,
-          photo: undefined
+          photo: undefined,
+          is_sold: 0
         };
         
         this.handleChange = this.handleChange.bind(this);
@@ -38,8 +39,9 @@ class ProductCreation extends React.Component {
           name: this.state.name,
           price: this.state.price,
           description: this.state.description,
-          photo: this.state.photo
-        }
+          photo: this.state.photo,
+          is_sold: 0
+        };
         
         fetch('/api/createProduct', {
           method: 'POST',
