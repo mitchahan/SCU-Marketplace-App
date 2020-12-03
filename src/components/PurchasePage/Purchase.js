@@ -14,8 +14,29 @@ class Purchase extends React.Component {
           price: "",
           photo: ""
         };
-
+        this.getEmail = this.getEmail.bind(this);
         this.getProduct = this.getProduct.bind(this);
+    }
+
+    async getEmail() {
+      const product_id = {
+        product_id: this.props.match.params.id,
+      }
+      
+      await fetch('/api/getEmail', {
+          method: 'POST',
+          body: JSON.stringify(product_id),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+      .then(res => res.json())
+      .then(res => {
+        console.log(res);
+        this.setState({
+          email: res[0].email
+        });
+      });
     }
 
     async getProduct() {
@@ -44,6 +65,7 @@ class Purchase extends React.Component {
 
     componentDidMount() {
       this.getProduct();
+      this.getEmail();
     }
 
   render() {
@@ -58,7 +80,7 @@ class Purchase extends React.Component {
             <Card.Text className="pt-2">
               {this.state.description}
             </Card.Text>
-            {/* <p>Contact {this.getEmail().stringify()}</p> */}
+            <p>Contact {this.state.email} to purchase your item!</p>
           </Card.Body>
         </Card>
       </div>
