@@ -69,7 +69,7 @@ class Purchase extends React.Component {
     }
 
   render() {
-    const imageStyle = { maxHeight: "40%", width: "100%" }
+    const imageStyle = { maxHeight: "40%", width: "100%", borderRadius: "9px 9px 0 0" }
     return(
       <div className = "base-container">
         <Card border="dark" className="mt-4 w-50">

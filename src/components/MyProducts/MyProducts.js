@@ -126,8 +126,8 @@ class HomePage extends React.Component {
   }
 
   render() {
-    const imageStyle = { maxHeight: "50%", width: "100%" }
-    const imageStyleSold = { maxHeight: "50%", width: "100%", opacity: .9, backgroundColor: 'gray' }
+    const imageStyle = { maxHeight: "50%", width: "100%", borderRadius: "9px 9px 0 0" }
+    const imageStyleSold = { maxHeight: "50%", width: "100%", opacity: .9, backgroundColor: 'gray', borderRadius: "9px 9px 0 0" }
     const { error, products } = this.state;
     return(
       <div className = "base-container">
@@ -178,7 +178,6 @@ class HomePage extends React.Component {
                               <Card.Text>
                                   {product.description}
                               </Card.Text>
-                              {product.is_sold}
                               <Button className="mb-2" variant="primary" onClick={() => this.delete(product.product_id)}>Delete</Button>
                               <Button variant="primary" onClick={() => this.sell(product.product_id)}>Mark as sold</Button>
                           </Card.Body>
