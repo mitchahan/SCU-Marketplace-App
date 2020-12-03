@@ -44,6 +44,17 @@ app.get('/api/user', (req, res) => {
   });
 });
 
+app.post('/api/getEmail', (req, res) => {
+  pool.query(`SELECT email FROM user_products WHERE product_id='${req.body.product_id}' LIMIT 1;`, (err, rows) => {
+    if (err) {
+      res.send(err);
+    } else {
+      res.send(rows);
+    }
+  });
+});
+
+
 app.post('/api/register', (req, res) => {
   pool.query(`INSERT INTO user (email, password, first_name, last_name, is_seller) VALUES ("${req.body.email}", "${req.body.password}", "${req.body.first_name}", "${req.body.last_name}", 0);`, (err, rows) => {
     if (err) {
@@ -67,6 +78,16 @@ app.post('/api/login', (req, res) => {
 // Product Routes
 app.get('/api/products', (req, res) => {
   pool.query(`SELECT * FROM products WHERE is_sold=0;`, (err, rows) => {
+    if (err) {
+      res.send(err);
+    } else {
+      res.send(rows);
+    }
+  });
+});
+
+app.post('/api/getProduct', (req, res) => {
+  pool.query(`SELECT * FROM products WHERE product_id='${req.body.product_id}' LIMIT 1;`, (err, rows) => {
     if (err) {
       res.send(err);
     } else {

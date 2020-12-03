@@ -8,6 +8,7 @@ import Login from './components/Login Page/Login';
 import Register from './components/Login Page/Register';
 import ProductCreation from './components/Product Creation Page/ProductCreation';
 import MyProducts from './components/MyProducts/MyProducts'
+import Purchase from './components/PurchasePage/Purchase';
 import './App.scss';
 
 class App extends React.Component {
@@ -28,6 +29,7 @@ class App extends React.Component {
               <Route path = "/login" component = {Login}/>
               <Route path = "/register" component = {Register}/>
               <Route path = "/create-product" component = {ProductCreation}/>
+              <Route path="/product/:id" component={Purchase}/>
             </Switch>
           </div>
         </BrowserRouter>

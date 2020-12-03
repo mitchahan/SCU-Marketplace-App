@@ -27,9 +27,9 @@ class HomePage extends React.Component {
     .then(res => res.json())
     .then(
         (result) => {
-            this.setState({
-                products: result
-            });
+          this.setState({
+              products: result
+          });
         },
         (error)=>{
             this.setState({ error });
@@ -146,7 +146,7 @@ class HomePage extends React.Component {
           <InputGroup.Append>
             <Button
               style={fontSize}
-              variant="outline-primary" 
+              variant="outline-primary"
               type="submit"
               onClick={ this.search }
             >
@@ -160,7 +160,7 @@ class HomePage extends React.Component {
               <CardDeck>
                   <CardColumns>
                   {products.map(product => (
-                      <Card key={products.product_id} border="dark" style={{ width: '18rem' }}>
+                      <Card key={products.product_id} border="dark" style={{ width: '18em' }}>
                           <Card.Img variant="top" style={imageStyle} src={product.photo}/>
                           <Card.Body>
                               <Card.Title>{product.name}</Card.Title>
@@ -169,7 +169,7 @@ class HomePage extends React.Component {
                                   {product.description}
                               </Card.Text>
                               {window.sessionStorage.getItem('isLoggedIn') === "true"
-                                  ? <Link className="btn" variant="primary" to="/">Purchase</Link>
+                                  ? <Link className="btn" variant="primary" to={`/product/${product.product_id}`}>Purchase</Link>
                                   : <Link className="btn" variant="primary" to="/register">Purchase</Link>
                               }
                           </Card.Body>
