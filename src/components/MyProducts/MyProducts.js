@@ -164,7 +164,6 @@ class HomePage extends React.Component {
                                 <Card.Text>
                                     {product.description}
                                 </Card.Text>
-                                {product.is_sold}
                                 <Button className="mb-2" variant="primary" onClick={() => this.delete(product.product_id)}>Delete</Button>
                             </Card.Body>
                         </Card>

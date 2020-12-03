@@ -7,6 +7,7 @@ import User from './components/User';
 import Login from './components/Login Page/Login';
 import Register from './components/Login Page/Register';
 import ProductCreation from './components/Product Creation Page/ProductCreation';
+import Purchase from './components/PurchasePage/Purchase';
 import MyProducts from './components/MyProducts/MyProducts'
 import Purchase from './components/PurchasePage/Purchase';
 import './App.scss';
