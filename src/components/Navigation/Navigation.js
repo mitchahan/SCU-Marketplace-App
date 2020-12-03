@@ -6,7 +6,7 @@
 import React from 'react';
 import { Navbar } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
-import Logo from "../../siteLogo.svg";
+import Logo from "../../siteLogo.png";
 import './Navigation.scss';
 
 class Navigation extends React.Component {
@@ -36,7 +36,8 @@ class Navigation extends React.Component {
                           </>
                         : <>
                             <NavLink className="link" to="/about">About</NavLink>
-                            <NavLink className="link" to="/products">Products</NavLink>
+                            <NavLink className="link" to="/">Products</NavLink>
+
                             <NavLink className="link" to="/login">Login</NavLink>
                             <NavLink className="link" to="/register">Register</NavLink>
                           </>
