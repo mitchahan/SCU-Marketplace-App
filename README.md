@@ -12,6 +12,15 @@ The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 Make sure that when you run `npm start` that you are in the client folder, NOT the root directory or server directory.
 
+### `npm run dev`
+
+Runs the app in the development mode with the server.<br>
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+The page will reload if you make edits.<br>
+You will also see any lint errors in the console.
+Make sure that when you run `npm run dev` that you are in the client folder, NOT the root directory or server directory.
+
 ## Branching Strategy
 
 These are just some helpful commands you might want to use when branching:
@@ -88,8 +97,39 @@ When creating a new file, please copy and paste the following into the start of 
  */
 ```
 
-## Rebasing
-TODO
+## Setting up the Local Server
+In order to get the local server up and running to make edits and manipulate data you must do the following:
+
+1. Create a '.env' in the root project directory, same location as '.env.sample'
+    ```
+    MYSQL_HOST=localhost
+    MYSQL_USER=root
+    MYSQL_PWD=yourpassword
+    MYSQL_DB=scu-marketplace
+    ```
+
+2. Go to terminal:
+Navigate to `scu-marketplace-app/src/server`, i.e. `cd 'blah/blah/scu-marketplace-app/src/server'`
+
+    Type: 
+    
+    `mysql -u root -p < scu-marketplace.sql`
+    
+    enter your password
+    
+    Type: 
+    
+    `mysql -u root -p`
+
+    enter your password again
+
+    Type: 
+    
+    `USE scu-marketplace;`
+
+    `ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'yourPassword';`
+
+    `flush privileges;` 
 
 ## Other Notes
 If you messed up a commit or Pull Request, reach out to Mitch. Mitch has dealt with lots of messed up commits and pull requests.

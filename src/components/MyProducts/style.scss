@@ -1,0 +1,46 @@
+.base-container {
+  width: 100%;
+  height: 100%;
+  .header {
+    font-size: 40px;
+    font-family: "Open Sans", sans-serif;
+    color: currentColor;
+  }
+  .top-right {
+    position: absolute;
+    top: 20%; 
+    right: 5%; 
+  }
+  .top-left {
+    position: absolute;
+    top: 20%; 
+    left: 5%;
+  }
+}
+.card-list{
+    margin-top: 4rem;
+}
+
+.card {
+    padding: 2 rem 4 rem;
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.25);
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+    background-color: white;
+}
+
+.card-title {
+    margin-bottom: 0.5rem;
+    font-size: 3.2rem;
+}
+
+.card-image {
+    margin: 0 auto;
+    padding-top: 4rem;
+    display: block;
+}
+
+.card-content {
+    margin: 2rem;
+}
